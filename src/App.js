@@ -1,7 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 
+import React, { useState } from 'react';
+import CustomButton from './CustomButton'; // 引入自定义按钮组件
+
 function App() {
+  const [clickCount, setClickCount] = useState(0);
+
+  const handlePrimaryClick = () => {
+    setClickCount(prevCount => prevCount + 1);
+    alert('主按钮被点击了！');
+  };
+
+  const handleSecondaryClick = () => {
+    alert('次要按钮被点击了！');
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +32,11 @@ function App() {
           Learn React
         </a>
       </header>
+      <div>
+        <CustomButton text="主按钮" onClick={handlePrimaryClick} type="primary" />
+        <CustomButton text="次要按钮" onClick={handleSecondaryClick} type="secondary" />
+        <p>点击次数: {clickCount}</p>
+      </div>
     </div>
   );
 }
